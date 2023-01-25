@@ -4,58 +4,31 @@ import highchartsExporting from 'highcharts/modules/exporting';
 import Highcharts from 'highcharts';
 
 const RadioGroup = () => {
-  const chart = {};
-  const chartOptions = useRef();
+  const chart = useRef();
+
+  const [chartOptions, setChartOptions] = useState({
+    xAxis: {
+      categories: ['A', 'B', 'C'],
+    },
+    series: [{ data: [1, 2, 3] }],
+  });
 
   {
     return (
       <div>
-        <div>
-          png{' '}
-          <button
-            onClick={() => {
-              chart.current.chart.exportChart();
-            }}
-          >
-            PNG
-          </button>
-        </div>
-        <div>
-          jpeg{' '}
-          <button
-            onClick={() => {
-              chart.current.chart.exportChart({ type: 'image/jpeg' });
-            }}
-          >
-            jpg
-          </button>
-        </div>
-        <div>
-          svg{' '}
-          <button
-            onClick={() => {
-              chart.current.chart.exportChart({ type: 'image/svg+xml' });
-            }}
-          >
-            svg
-          </button>
-        </div>
-        <div>
-          pdf{' '}
-          <button
-            onClick={() => {
-              chart.current.chart.exportChart({ type: 'application/pdf' });
-            }}
-          >
-            pdf
-          </button>
-        </div>
-        <HighchartsReact
-          ref={chart}
-          highcharts={Highcharts}
-          options={chartOptions}
-        />
-      </div>
+      <button
+        onClick={() => {
+          chart.current.chart.exportChart();
+        }}
+      >
+        PNG
+      </button>
+            <HighchartsReact
+            ref={chart}
+            highcharts={Highcharts}
+            options={chartOptions}
+          />
+          </div>
     );
   }
 };
